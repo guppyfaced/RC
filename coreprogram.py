@@ -27,7 +27,7 @@ class orders:
             print("It seems like the car got lost. Try loading it again")
     def step(self, currentlocation, orientation, cartesiandict):
         self.currentlocation = list(map(add, self.currentlocation, self.cartesiandict[self.orientation]))
-        if (self.currentlocation[0] > self.roomsize[0]) or (self.currentlocation[1] > self.roomsize[1]):
+        if ((self.currentlocation[0] > self.roomsize[0]) or (self.currentlocation[1] > self.roomsize[1])) or ((self.currentlocation[0] < 0) or (self.currentlocation[1] < 0)):
             print('The remote control car hit a wall. Oh dear')
             self.wall = True
             return self.wall
@@ -42,9 +42,9 @@ class orders:
         for command in commands:
             print(command)
             if command == 'r':
-                self.turn(1)
-            elif command == 'l':
                 self.turn(-1)
+            elif command == 'l':
+                self.turn(1)
             elif command == 'f':
                 self.turn(0)
                 self.step(self.currentlocation, self.orientation, self.cartesiandict)
